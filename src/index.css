@@ -1,0 +1,337 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* 字体 */
+  --font-display: "Space Grotesk", "Sora", system-ui, sans-serif;
+  --font-sans: "Outfit", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
+}
+
+/* ============ 暗色主题 (默认) ============ */
+html.dark {
+  color-scheme: dark;
+
+  /* 表面色 - 深空墨蓝 */
+  --void-950: 5 8 16;
+  --void-900: 7 11 20;
+  --void-850: 10 16 25;
+  --void-800: 15 22 35;
+  --void-750: 19 27 43;
+
+  --grid: 26 34 51;
+  --grid-soft: 20 27 42;
+
+  --edge: 42 59 82;
+  --edge-soft: 30 42 61;
+
+  /* 文本 */
+  --ink-50: 244 247 252;
+  --ink-100: 232 238 247;
+  --ink-300: 184 197 214;
+  --ink-500: 122 139 163;
+  --ink-700: 74 88 112;
+
+  /* 强调色 - 霓虹青 */
+  --neon-50: 230 255 254;
+  --neon-100: 194 251 249;
+  --neon-300: 111 233 230;
+  --neon-400: 61 217 214;
+  --neon-500: 31 191 188;
+  --neon-600: 15 157 154;
+  --neon-700: 10 122 120;
+
+  /* 琥珀橙 */
+  --amber-400: 255 199 116;
+  --amber-500: 255 181 71;
+  --amber-600: 232 154 42;
+
+  /* 品红 */
+  --magenta-400: 255 122 176;
+  --magenta-500: 255 77 141;
+  --magenta-600: 224 51 111;
+
+  /* 面板背景渐变 */
+  --panel-bg: linear-gradient(180deg, rgba(15, 22, 35, 0.85), rgba(10, 16, 25, 0.92));
+  --field-bg: 10 16 25;
+  --body-bg: 7 11 20;
+
+  /* 全局氛围层 - 网格 + 辉光 */
+  --bg-layers:
+    linear-gradient(rgba(42, 59, 82, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42, 59, 82, 0.18) 1px, transparent 1px),
+    radial-gradient(circle at 50% -10%, rgba(61, 217, 214, 0.1), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(255, 77, 141, 0.06), transparent 50%);
+  --bg-size: 48px 48px, 48px 48px, 100% 100%, 100% 100%;
+
+  /* 滚动条 */
+  --scrollbar-track: 10 16 25;
+  --scrollbar-thumb: 42 59 82;
+  --scrollbar-thumb-hover: 61 217 214;
+
+  /* 辉光分隔线 */
+  --glow-line-bg: linear-gradient(90deg, transparent, rgba(61, 217, 214, 0.55), transparent);
+  --glow-line-shadow: 0 0 12px rgba(61, 217, 214, 0.5);
+
+  /* 卡片悬停 */
+  --panel-hover-border: 61 217 214;
+  --panel-hover-shadow: 0 0 0 1px rgba(61, 217, 214, 0.25), 0 16px 40px rgba(0, 0, 0, 0.45);
+  --panel-border: 30 42 61;
+
+  --field-border: 30 42 61;
+  --field-border-hover: 42 59 82;
+  --field-border-focus: 61 217 214;
+  --field-focus-glow: rgba(61, 217, 214, 0.18);
+
+  /* logo 渐变 */
+  --logo-bg: linear-gradient(135deg, rgba(61, 217, 214, 0.3), rgba(255, 77, 141, 0.2));
+
+  /* 占位符图块 */
+  --placeholder-bg: 15 22 35;
+
+  /* 显存分项专用色 (暗色: 霓虹青/琥珀/品红/灰) */
+  --seg-weights: 61 217 214;      /* neon-400 霓虹青 */
+  --seg-kv: 255 181 71;           /* amber-500 琥珀 */
+  --seg-act: 255 77 141;          /* magenta-500 品红 */
+  --seg-framework: 122 139 163;   /* ink-500 灰 */
+
+  /* 环图底环 + 中心点 */
+  --ring-track: 30 42 61;
+  --ring-center: 61 217 214;
+}
+
+/* ============ 明亮主题 ============ */
+/* 纯净白底 + 蓝色主调 + 黑色字体
+   分项用蓝色系邻近色族 (蓝/靛/青/灰) 保证协调又可辨
+   状态色保留琥珀/玫红作语义警示 */
+html.light {
+  color-scheme: light;
+
+  /* 表面色 - 白->灰白梯度形成层次 */
+  --void-950: 241 245 249;   /* slate-100 页面底 */
+  --void-900: 255 255 255;   /* 顶栏纯白 */
+  --void-850: 248 250 252;   /* slate-50 次卡片 */
+  --void-800: 255 255 255;   /* 主卡片纯白 */
+  --void-750: 241 245 249;   /* slate-100 内嵌区 */
+
+  --grid: 226 232 240;
+  --grid-soft: 241 245 249;
+
+  --edge: 226 232 240;       /* slate-200 描边 (更柔和) */
+  --edge-soft: 241 245 249;
+
+  /* 文本 - 纯黑主调 + slate 梯度 */
+  --ink-50: 0 0 0;            /* 纯黑 */
+  --ink-100: 15 23 42;        /* slate-900 主文本 (近黑) */
+  --ink-300: 30 41 59;        /* slate-800 次主文本 */
+  --ink-500: 71 85 105;       /* slate-600 标签 */
+  --ink-700: 100 116 139;     /* slate-500 辅助 */
+
+  /* 主色蓝 - blue 梯度 (blue-600 为主色, 白底对比足够) */
+  --neon-50: 239 246 255;    /* blue-50 */
+  --neon-100: 219 234 254;   /* blue-100 */
+  --neon-300: 59 130 246;    /* blue-500 */
+  --neon-400: 37 99 235;     /* blue-600 (主色) */
+  --neon-500: 29 78 216;     /* blue-700 */
+  --neon-600: 30 64 175;     /* blue-800 */
+  --neon-700: 23 37 84;      /* blue-900 */
+
+  /* 琥珀色 - 保留作 warn 语义警示 */
+  --amber-400: 217 119 6;    /* amber-600 */
+  --amber-500: 180 83 9;     /* amber-700 */
+  --amber-600: 146 64 14;    /* amber-800 */
+
+  /* 玫红色 - 作 err 语义警示 (替换原 magenta, 与蓝主色区分) */
+  --magenta-400: 225 29 72;  /* rose-600 */
+  --magenta-500: 190 18 60;  /* rose-700 */
+  --magenta-600: 159 18 57;  /* rose-800 */
+
+  /* 显存分项专用色 - 蓝色系邻近色族, 协调又可辨 */
+  --seg-weights: 37 99 235;    /* blue-600 权重 (主体) */
+  --seg-kv: 79 70 229;         /* indigo-600 KV缓存 (靛蓝) */
+  --seg-act: 8 145 178;        /* cyan-600 激活值 (青蓝) */
+  --seg-framework: 100 116 139;/* slate-500 框架 (中性灰) */
+
+  /* 环图底环 + 中心点 */
+  --ring-track: 226 232 240;   /* slate-200 */
+  --ring-center: 37 99 235;    /* blue-600 */
+
+  /* 面板 - 纯白 + 蓝色调柔和阴影 */
+  --panel-bg: #ffffff;
+  --field-bg: 248 250 252;   /* slate-50 输入框底 */
+  --body-bg: 241 245 249;    /* slate-100 页面底 */
+
+  /* 全局氛围层 - 极淡蓝色径向辉光 */
+  --bg-layers:
+    radial-gradient(circle at 50% -10%, rgba(37, 99, 235, 0.06), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(79, 70, 229, 0.03), transparent 50%);
+  --bg-size: 100% 100%, 100% 100%;
+
+  /* 滚动条 */
+  --scrollbar-track: 241 245 249;
+  --scrollbar-thumb: 203 213 225;
+  --scrollbar-thumb-hover: 37 99 235;
+
+  /* 辉光分隔线 - 蓝色 */
+  --glow-line-bg: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.5), transparent);
+  --glow-line-shadow: 0 0 10px rgba(37, 99, 235, 0.18);
+
+  /* 卡片悬停 - 蓝色调阴影 */
+  --panel-hover-border: 37 99 235;
+  --panel-hover-shadow: 0 0 0 1px rgba(37, 99, 235, 0.22), 0 8px 24px rgba(29, 78, 216, 0.1);
+  --panel-border: 226 232 240;
+
+  --field-border: 203 213 225;
+  --field-border-hover: 148 163 184;
+  --field-border-focus: 37 99 235;
+  --field-focus-glow: rgba(37, 99, 235, 0.15);
+
+  /* logo 渐变 - 蓝色 */
+  --logo-bg: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(79, 70, 229, 0.12));
+
+  --placeholder-bg: 241 245 249;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: rgb(var(--body-bg));
+  color: rgb(var(--ink-100));
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv01", "cv02";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  line-height: 1.5;
+  background-image: var(--bg-layers);
+  background-size: var(--bg-size);
+  background-attachment: fixed;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 数字等宽对齐 */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(var(--scrollbar-track));
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--scrollbar-thumb));
+  border-radius: 6px;
+  border: 2px solid rgb(var(--scrollbar-track));
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--scrollbar-thumb-hover));
+}
+
+/* 焦点环 */
+*:focus-visible {
+  outline: 2px solid rgba(var(--neon-400), 0.7);
+  outline-offset: 1px;
+  border-radius: 4px;
+}
+
+/* 顶部辉光分隔线 */
+.glow-line {
+  position: relative;
+}
+.glow-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: var(--glow-line-bg);
+  box-shadow: var(--glow-line-shadow);
+}
+
+/* 卡片描边基础 */
+.panel {
+  background: var(--panel-bg);
+  border: 1px solid rgb(var(--panel-border));
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.panel-hover {
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.panel-hover:hover {
+  border-color: rgba(var(--panel-hover-border), 0.55);
+  transform: translateY(-2px);
+  box-shadow: var(--panel-hover-shadow);
+}
+
+/* 输入控件 */
+.field {
+  background: rgb(var(--field-bg));
+  border: 1px solid rgb(var(--field-border));
+  color: rgb(var(--ink-100));
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+}
+.field:hover {
+  border-color: rgb(var(--field-border-hover));
+}
+.field:focus {
+  border-color: rgb(var(--field-border-focus));
+  box-shadow: 0 0 0 2px var(--field-focus-glow);
+  outline: none;
+}
+
+/* 文本辅助类 */
+.label-tiny {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(var(--ink-500));
+}
+
+/* 数据脉冲条扫描效果 */
+.sweep-line {
+  position: relative;
+  overflow: hidden;
+}
+.sweep-line::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--neon-400), 0.35),
+    transparent
+  );
+  animation: sweep 3.5s linear infinite;
+}
+
+.text-muted {
+  color: rgb(var(--ink-500));
+}
+.text-subtle {
+  color: rgb(var(--ink-300));
+}
+
+/* select 选项背景 - 跟随主题 */
+select.field option {
+  background: rgb(var(--void-800));
+  color: rgb(var(--ink-100));
+}
