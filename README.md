@@ -15,7 +15,7 @@
 
 ### 三种模型来源
 
-- **预设模型库**：内置 8 款主流模型（Llama-3、Qwen2.5、GLM-4、Mistral、Mixtral MoE、DeepSeek-V2-Lite MoE）
+- **预设模型库**：内置 4 款国内主流开源模型（DeepSeek-V4-Pro MoE、DeepSeek-V4-Flash MoE、Qwen3.6-27B、GLM-5.2 MoE）
 - **魔搭拉取**：输入 ModelScope 模型 ID，自动拉取并解析 config.json（支持多模态 VLM 嵌套结构、多家族字段兼容、多 CORS 代理兜底）
 - **自定义输入**：手动填写层数、隐藏维度、KV 头数等架构参数
 
@@ -41,19 +41,22 @@
 
 ### vLLM 启动参数生成
 
-参考 [vLLM Recipes](https://recipes.vllm.ai/) 最佳实践，根据模型架构与显存评估自动生成：
+参考 [vLLM Docs](https://docs.vllm.ai/) 最佳实践，根据模型架构与显存评估自动生成：
 
-- **核心参数**：`--model`、`--tensor-parallel-size`、`--expert-parallel-size`
+- **核心参数**：`--model`、`--dtype`、`--tensor-parallel-size`、`--expert-parallel-size`
+- **服务配置**：`--served-model-name`、`--api-key`
 - **量化参数**：`--quantization` (fp8 / awq)
 - **显存/上下文**：`--max-model-len`、`--gpu-memory-utilization`、`--kv-cache-dtype`
 - **性能优化**：`--enable-chunked-prefill`、`--max-num-batched-tokens`、`--max-num-seqs`
+- **工具调用**：`--enable-auto-tool-choice`、`--tool-call-parser` (qwen3_coder / deepseek_v3 / glm4)
+- **推理输出**：`--enable-reasoning`、`--reasoning-parser` (qwen3 / deepseek_r1)
 - 完整命令行预览 + 一键复制
 
 ### 双主题
 
-- **暗色主题**：深空墨蓝 + 霓虹青/琥珀/品红
-- **明亮主题**：白底 + 蓝色主调 + 黑色文本
-- 跟随系统偏好，支持手动切换，localStorage 持久化，防闪烁加载
+- **暗色主题**：纯黑画布 (#121212) + 纯白关键数据 + 蓝色强调
+- **明亮主题**：极浅蓝底 + 深蓝灰文字 + 蓝色主调
+- 默认明亮模式，支持手动切换，localStorage 持久化，防闪烁加载
 
 ## 技术栈
 
